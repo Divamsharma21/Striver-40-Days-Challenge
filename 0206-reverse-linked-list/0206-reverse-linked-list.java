@@ -30,24 +30,47 @@ class Solution {
         
         // optimal 1(using inplace replacement )
         
-        ListNode temp=head;
-        ListNode prev=null;
+//         ListNode temp=head;
+//         ListNode prev=null;
         
-        while(temp!=null){
-            // store the next element of temp
-            ListNode front=temp.next;
+//         while(temp!=null){
+//             // store the next element of temp
+//             ListNode front=temp.next;
             
-            // make prev to be the current
-            temp.next=prev;
+//             // make prev to be the current
+//             temp.next=prev;
             
              
-            prev=temp;
-            // make temp to be next element
+//             prev=temp;
+//             // make temp to be next element
             
-            temp=front;
+//             temp=front;
+//         }
+        
+//        return prev; 
+        
+        
+        // optimal 2
+        
+        
+        ListNode newhead1=reverselinkedlist(head);
+        return newhead1;
+    }
+    
+    
+    public ListNode reverselinkedlist(ListNode head){
+        if(head==null || head.next==null){
+            return head;
         }
         
-       return prev; 
+         ListNode newhead2=reverselinkedlist(head.next);
         
+        ListNode front=head.next;
+        
+        front.next=head;
+        
+        head.next=null;
+        
+        return newhead2;
     }
 }
