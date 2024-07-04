@@ -10,25 +10,44 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
+        // brute force
+//     Stack<Integer>st=new Stack<>();
+//         ListNode temp=head;
+//         //push the element in the stack
+//         while(temp!=null){
+//             st.push(temp.val);
+//             temp=temp.next;
+//         }
+//         // make the last element of stack is head
+//         temp=head;
+//         // pop the element and make a new linklist 
+//         while(temp!=null){
+//             temp.val=st.pop();
+//             temp=temp.next;
+//         }
         
-    Stack<Integer>st=new Stack<>();
+//         return head;
+        
+        // optimal 1(using inplace replacement )
+        
         ListNode temp=head;
-        //push the element in the stack
+        ListNode prev=null;
+        
         while(temp!=null){
-            st.push(temp.val);
-            temp=temp.next;
+            // store the next element of temp
+            ListNode front=temp.next;
+            
+            // make prev to be the current
+            temp.next=prev;
+            
+             
+            prev=temp;
+            // make temp to be next element
+            
+            temp=front;
         }
-        // make the last element of stack is head
-        temp=head;
-        // pop the element and make a new linklist 
-        while(temp!=null){
-            temp.val=st.pop();
-            temp=temp.next;
-        }
         
-        return head;
-        
-        
+       return prev; 
         
     }
 }
