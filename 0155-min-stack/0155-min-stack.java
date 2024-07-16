@@ -11,13 +11,13 @@ Stack<Integer> st=new Stack<>();
     }
     
     public void pop() {
-        if(!st.isEmpty()){
+        // if(!st.isEmpty()){
             st.pop();
-        }
+        // }
     }
     
     public int top() {
-          if(st.isEmpty()) return 0;
+          // if(st.isEmpty()) return 0;
         
      return st.peek();
     }
