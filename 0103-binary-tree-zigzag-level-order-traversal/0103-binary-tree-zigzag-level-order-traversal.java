@@ -14,41 +14,57 @@
  * }
  */
 class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans=new ArrayList<>();
-          zigzag(root,ans,0);  
-        return ans;      
-    }
+//     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+//         List<List<Integer>> ans=new ArrayList<>();
+//           zigzag(root,ans,0);  
+//         return ans;      
+//     }
     
-    public  void zigzag(TreeNode root ,List<List<Integer>> ans ,int l){
+//     public  void zigzag(TreeNode root ,List<List<Integer>> ans ,int l){
        
-        if(root==null) return;
-        if(ans.size()<=l){
-            ans.add(new ArrayList<>());
+//         if(root==null) return;
+//         if(ans.size()<=l){
+//             ans.add(new ArrayList<>());
            
-        }
+//         }
         
-        if(l%2 ==0){
-            ans.get(l).add(root.val);
-        }else{
-            ans.get(l).add(0,root.val);
-        }
+//         if(l%2 ==0){
+//             ans.get(l).add(root.val);
+//         }else{
+//             ans.get(l).add(0,root.val);
+//         }
         
     
-       zigzag(root.left,ans,l+1);
-         zigzag(root.right,ans,l+1);
+//        zigzag(root.left,ans,l+1);
+//          zigzag(root.right,ans,l+1);
         
+//     }
+    
+     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    List<List<Integer>> ret = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    int l = 0;
+    while (!queue.isEmpty()) {
+        int size = queue.size();
+        List<Integer> level = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                level.add(node.val);
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+        if (!level.isEmpty()) {
+            if (l % 2 == 1) {
+                Collections.reverse(level);
+            }
+            ret.add(level);
+        }
+        l++;
     }
+    return ret;
+ }
 }
-//    if (cur == null) return;
-//     if (res.size() <= level) {
-//         res.add(new ArrayList<Integer>());
-//     }
-//     if (level % 2 == 0) {
-//         res.get(level).add(cur.val);
-//     }   else {
-//         res.get(level).add(0, cur.val);
-//     }
-//     travel(res, level + 1, cur.left);
-//     travel(res, level + 1, cur.right);
-// }
+ 
