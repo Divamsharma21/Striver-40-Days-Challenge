@@ -14,45 +14,46 @@
  * }
  */
 class Solution {
-    int count=0;
-    int result=Integer.MIN_VALUE;
+//     int count=0;
+//     int result=Integer.MIN_VALUE;
     
-    public int kthSmallest(TreeNode root, int k) {
-        if(root==null) return 0;
+//     public int kthSmallest(TreeNode root, int k) {
+//         if(root==null) return 0;
         
-          kthSmallest(root.left,k);
-        count++;
-        if(count==k){
-            result=root.val;
+//           kthSmallest(root.left,k);
+//         count++;
+//         if(count==k){
+//             result=root.val;
         
-        }
+//         }
         
-         kthSmallest(root.right,k);
+//          kthSmallest(root.right,k);
         
-        return result;
-}
-}
-
-
-// int count = 0;
-// int result = Integer.MIN_VALUE;
-
-// public int kthSmallest(TreeNode root, int k) {
-//     traverse(root, k);
-//     return result;
+//         return result;
+// }
 // }
 
-// public void traverse(TreeNode root, int k) {
-//     if(root == null) {
-//         return;
-//     }
-//     traverse(root.left, k);
-//     //---------- real code starts here ----------
-//     count++;
-//     if(count == k) {
-//         result = root.val;
-//         return;
-//     }       
-//     //-------------------------------------------
-//     traverse(root.right, k);       
-// }
+
+int count = 0;
+int result = Integer.MIN_VALUE;
+
+public int kthSmallest(TreeNode root, int k) {
+    traverse(root, k);
+    return result;
+}
+
+public void traverse(TreeNode root, int k) {
+    if(root == null) {
+        return;
+    }
+    traverse(root.left, k);
+    //---------- real code starts here ----------
+    count++;
+    if(count == k) {
+        result = root.val;
+        return;
+    }       
+    //-------------------------------------------
+    traverse(root.right, k);       
+}
+}
